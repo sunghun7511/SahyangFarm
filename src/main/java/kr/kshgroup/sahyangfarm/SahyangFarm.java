@@ -1,4 +1,12 @@
 package kr.kshgroup.sahyangfarm;
 
-public class SahyangFarm {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class SahyangFarm extends JavaPlugin {
+
+    @Override
+    public void onEnable() {
+        getLogger().info("Plugin enabled.");
+    }
+
 }

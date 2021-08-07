@@ -1,0 +1,7 @@
+main: kr.kshgroup.sahyangfarm.SahyangFarm
+version: 1.0.0-SNAPSHOT
+name: SahyangFarm
+
+commands:
+  팜:
+    description: 팜 플러그인 기본 명령어
