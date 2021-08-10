@@ -39,6 +39,20 @@ public class SahyangFarm extends JavaPlugin {
     }
 
     /**
+     * 클래스 유형에 맞는 Manager 인스턴스를 반환합니다.
+     * 단, SahyangFarm#onEnable 메서드가 실행된 이후에 정상적으로 사용이 가능합니다.
+     *
+     * @param cls 요청하고자 하는 Manager 클래스 유형
+     * @return 클래스 유형에 맞는 Manager 인스턴스
+     */
+    public static ManagerBase getManager(Class<? extends ManagerBase> cls) {
+        return getInstance().managers.stream()
+                .filter(cls::isInstance)
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
      * ManagerBase 클래스를 상속한 클래스의 인스턴스를 만들고 managers에 등록합니다.
      */
     private void registerManagers() {
