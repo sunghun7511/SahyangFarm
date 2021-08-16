@@ -32,6 +32,10 @@ public class CommandFarm extends SFCommandGroup implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length != 0) {
+            return super.onCommand(sender, label, args);
+        }
+
         if (isNotPlayer(sender)) return true;
         Player player = (Player) sender;
 
