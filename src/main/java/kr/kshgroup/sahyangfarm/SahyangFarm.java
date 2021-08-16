@@ -36,6 +36,8 @@ public class SahyangFarm extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Plugin disabled.");
+
+        managers.forEach(ManagerBase::onDisable);
     }
 
     /**
