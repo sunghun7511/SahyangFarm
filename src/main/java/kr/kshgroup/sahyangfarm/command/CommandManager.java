@@ -3,6 +3,7 @@ package kr.kshgroup.sahyangfarm.command;
 import kr.kshgroup.sahyangfarm.ManagerBase;
 import kr.kshgroup.sahyangfarm.command.admin.CommandForceMove;
 import kr.kshgroup.sahyangfarm.command.admin.CommandMaxUserIncrease;
+import kr.kshgroup.sahyangfarm.command.farm.CommandFarmHelp;
 import kr.kshgroup.sahyangfarm.command.farm.CommandFarmRemove;
 import kr.kshgroup.sahyangfarm.command.party.CommandParty;
 import kr.kshgroup.sahyangfarm.command.shortcut.CommandPartyAccept;
@@ -22,6 +23,7 @@ public class CommandManager extends ManagerBase {
         mainCommand.registerCommand(new CommandForceMove());
         mainCommand.registerCommand(new CommandMaxUserIncrease());
 
+        mainCommand.registerCommand(new CommandFarmHelp());
         mainCommand.registerCommand(new CommandFarmRemove());
         mainCommand.registerCommand(new CommandParty());
 
