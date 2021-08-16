@@ -13,16 +13,19 @@ public class Farm implements SFStorableData {
 
     private int maxUser;
 
+    private final FarmOffset farmOffset;
     private final Location center;
 
-    public Farm(OfflinePlayer owner, Location center, int maxUser) {
+    public Farm(OfflinePlayer owner, Location center, FarmOffset farmOffset, int maxUser) {
         this.owner = owner;
+        this.farmOffset = farmOffset;
         this.center = center;
         this.maxUser = maxUser;
     }
 
     public Farm(Map<String, Object> map) {
         this.owner = Bukkit.getOfflinePlayer(UUID.fromString((String) map.get("owner")));
+        this.farmOffset = (FarmOffset) map.get("offset");
         this.center = (Location) map.get("center");
         this.maxUser = (int) map.get("max");
 
@@ -59,6 +62,10 @@ public class Farm implements SFStorableData {
         return maxUser;
     }
 
+    public FarmOffset getFarmOffset() {
+        return farmOffset;
+    }
+
     public Location getCenter() {
         return getCenter(true);
     }
@@ -71,6 +78,7 @@ public class Farm implements SFStorableData {
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
         map.put("owner", this.owner.getUniqueId().toString());
+        map.put("offset", this.farmOffset);
         map.put("center", this.center);
         map.put("max", this.maxUser);
         map.put("users", this.users.stream().map(UUID::toString).collect(Collectors.toList()));

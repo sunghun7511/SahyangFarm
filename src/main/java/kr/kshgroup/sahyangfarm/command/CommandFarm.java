@@ -1,12 +1,20 @@
 package kr.kshgroup.sahyangfarm.command;
 
+import kr.kshgroup.sahyangfarm.SahyangFarm;
+import kr.kshgroup.sahyangfarm.story.farm.StoryFarm;
+import kr.kshgroup.sahyangfarm.story.StoryManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class CommandFarm extends SFCommandGroup implements CommandExecutor {
+    private final StoryManager storyManager;
+
     public CommandFarm() {
         super("팜", "farm");
+
+        storyManager = (StoryManager) SahyangFarm.getManager(StoryManager.class);
     }
 
     @Override
@@ -14,7 +22,6 @@ public class CommandFarm extends SFCommandGroup implements CommandExecutor {
         if (executed != null) {
             return true;
         }
-        sendHelpMessage(sender, label);
         return true;
     }
 
@@ -25,7 +32,11 @@ public class CommandFarm extends SFCommandGroup implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return this.onCommand(sender, label, args);
+        if (isNotPlayer(sender)) return true;
+        Player player = (Player) sender;
+
+        StoryFarm storyFarm = storyManager.getStory(StoryFarm.class);
+        storyFarm.teleportFarm(player);
+        return true;
     }
 }
-

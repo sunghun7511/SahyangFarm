@@ -4,11 +4,7 @@ import kr.kshgroup.sahyangfarm.ManagerBase;
 import org.bukkit.Bukkit;
 
 public class CommandManager extends ManagerBase {
-    private final CommandFarm mainCommand;
-
-    public CommandManager() {
-        mainCommand = new CommandFarm();
-    }
+    private CommandFarm mainCommand;
 
     public CommandFarm getMainCommand() {
         return mainCommand;
@@ -16,6 +12,7 @@ public class CommandManager extends ManagerBase {
 
     @Override
     public void onRun() {
+        mainCommand = new CommandFarm();
 //        mainCommand.registerCommand();
 
         Bukkit.getPluginCommand("팜").setExecutor(mainCommand);
