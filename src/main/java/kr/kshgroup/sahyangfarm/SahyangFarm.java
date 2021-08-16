@@ -25,6 +25,7 @@ public class SahyangFarm extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("Plugin enabled.");
+        saveResource("farm.schematic", false);
 
         registerManagers();
 
