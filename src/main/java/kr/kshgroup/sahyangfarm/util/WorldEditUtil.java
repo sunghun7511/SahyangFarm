@@ -33,6 +33,7 @@ public final class WorldEditUtil {
                         location.getBlockY(),
                         location.getBlockZ()
                 ))
+                .ignoreAirBlocks(true)
                 .build();
         Operations.complete(operation);
     }
