@@ -14,6 +14,7 @@ public class CommandParty extends SFCommandGroup {
 
         // 유저용 명령어
         registerCommand(new CommandPartyDetail());
+        registerCommand(new CommandPartyKick());
     }
 
     @Override
