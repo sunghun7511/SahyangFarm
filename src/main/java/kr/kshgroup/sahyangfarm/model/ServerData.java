@@ -15,7 +15,7 @@ public class ServerData implements SFStorableData {
         farms.addAll((List<Farm>) map.getOrDefault("farms", new ArrayList<>()));
 
         reusableOffset.addAll((List<FarmOffset>) map.getOrDefault("offset.reusable", new ArrayList<>()));
-        lastOffset = (int) map.getOrDefault("offset.last", 0);
+        lastOffset = (int) map.getOrDefault("offset.last", -1);
     }
 
     @Override
