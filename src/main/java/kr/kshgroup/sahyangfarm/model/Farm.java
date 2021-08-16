@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Farm implements SFStorableData {
-    private final OfflinePlayer owner;
+    private OfflinePlayer owner;
     private final List<UUID> users = new ArrayList<>();
 
     private int maxUser;
@@ -44,6 +44,10 @@ public class Farm implements SFStorableData {
 
     public UUID getOwner() {
         return this.owner.getUniqueId();
+    }
+
+    public void setOwner(OfflinePlayer owner) {
+        this.owner = owner;
     }
 
     public List<UUID> getUsers() {
