@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
-    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:6.1.5'
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
 }
 
 test {
