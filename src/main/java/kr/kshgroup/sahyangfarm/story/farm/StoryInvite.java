@@ -73,7 +73,7 @@ public class StoryInvite implements SFStoryBase {
     }
 
     private boolean isExpired(Player player) {
-        return !invitations.containsKey(player) || (System.currentTimeMillis() - invitations.get(player).issued) < 300000L;
+        return !invitations.containsKey(player) || (System.currentTimeMillis() - invitations.get(player).issued) >= 300000L;
     }
 
     public static class Invitation {
