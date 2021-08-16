@@ -49,6 +49,7 @@ public class CommandFarmHelp extends SFCommandExecutor {
         FARM_INVITE_ACCEPT("/팜 수락", "파티 초대를 수락합니다."),
         FARM_INVITE_REJECT("/팜 거절", "파티 초대를 거절합니다."),
         FARM_PARTY_KICK("/팜 파티 추방 <닉네임>", "내 팜의 파티에서 유저를 추방합니다."),
+        FARM_PARTY_LEAVE("/팜 파티 나가기", "소속된 파티에서 나갑니다. 초대받은 경우만 사용이 가능합니다."),
         FARM_TRANSFER("/팜 파티 양도 <닉네임>", "내 팜의 소유권을 양도합니다."),
         FARM_OP_MOVE("/팜 이동 <닉네임>", "특정 유저의 팜으로 이동합니다.", true),
         FARM_OP_INCREASE("/팜 증설", "스크립트 연동용 명령어입니다. 자신의 팜의 최대 파티 인원을 1명 증설합니다.", true),

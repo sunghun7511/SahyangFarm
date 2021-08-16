@@ -16,6 +16,7 @@ public class CommandParty extends SFCommandGroup {
         registerCommand(new CommandPartyDetail());
         registerCommand(new CommandPartyInvite());
         registerCommand(new CommandPartyKick());
+        registerCommand(new CommandPartyLeave());
         registerCommand(new CommandPartyTransfer());
     }
 
