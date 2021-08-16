@@ -71,7 +71,8 @@ public class StoryFarm implements SFStoryBase {
 
             int minY = Math.min(clipboard.getMaximumPoint().getBlockY(), clipboard.getMinimumPoint().getBlockY());
             int offsetY = clipboard.getOrigin().getBlockY() - minY;
-            Location center = new Location(world, offset.getX() * 401, offsetY, offset.getZ() * 401);
+            int distance = Reference.FARM_PADDING * 2 + Reference.FARM_MARGIN + 1;
+            Location center = new Location(world, offset.getX() * distance, offsetY, offset.getZ() * distance);
             WorldEditUtil.pasteClipboard(clipboard, bukkitWorld, center);
 
             Farm farm = new Farm(player, center, offset, Reference.DEFAULT_MAX_USERS);
