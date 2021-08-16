@@ -26,7 +26,7 @@ public class CommandFarmHelp extends SFCommandExecutor {
         }
 
         List<Help> helps = Arrays.stream(Help.values())
-                .filter(help -> !sender.isOp() || help.requiredOp)
+                .filter(help -> !help.requiredOp || sender.isOp())
                 .collect(Collectors.toList());
 
         int maxPage = helps.size() / PER_PAGE + (helps.size() % PER_PAGE != 0 ? 1 : 0);
