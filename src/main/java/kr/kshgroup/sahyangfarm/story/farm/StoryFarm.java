@@ -26,6 +26,21 @@ public class StoryFarm implements SFStoryBase {
         storyManager = (StoryManager) SahyangFarm.getManager(StoryManager.class);
     }
 
+    public Farm getFarmFromLocation(Location location) {
+        return dataManager.getServerData().getFarms().stream()
+                .filter(farm -> {
+                    Location center = farm.getCenter();
+                    int x = location.getBlockX();
+                    int z = location.getBlockZ();
+                    int centerX = center.getBlockX();
+                    int centerZ = center.getBlockZ();
+                    int pad = Reference.FARM_PADDING;
+                    return x <= centerX + pad && x >= centerX - pad && z <= centerZ + pad && z >= centerZ - pad;
+                })
+                .findFirst()
+                .orElse(null);
+    }
+
     public Farm getFarm(Player player) {
         return dataManager.getServerData().getFarms().stream()
                 .filter(farm -> farm.isIn(player))
