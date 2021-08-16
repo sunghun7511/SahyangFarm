@@ -11,6 +11,7 @@ import kr.kshgroup.sahyangfarm.story.SFStoryBase;
 import kr.kshgroup.sahyangfarm.story.StoryManager;
 import kr.kshgroup.sahyangfarm.util.WorldEditUtil;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -41,7 +42,7 @@ public class StoryFarm implements SFStoryBase {
                 .orElse(null);
     }
 
-    public Farm getFarm(Player player) {
+    public Farm getFarm(OfflinePlayer player) {
         return dataManager.getServerData().getFarms().stream()
                 .filter(farm -> farm.isIn(player))
                 .findFirst()
@@ -52,7 +53,7 @@ public class StoryFarm implements SFStoryBase {
         teleportFarm(player, player);
     }
 
-    public void teleportFarm(Player player, Player targetFarm) {
+    public void teleportFarm(Player player, OfflinePlayer targetFarm) {
         StoryWorld storyWorld = storyManager.getStory(StoryWorld.class);
         World farmWorld = storyWorld.getWorld();
 
