@@ -11,6 +11,9 @@ public class CommandParty extends SFCommandGroup {
 
         // 관리자용 명령어
         registerCommand(new CommandMaxUserSet());
+
+        // 유저용 명령어
+        registerCommand(new CommandPartyDetail());
     }
 
     @Override
