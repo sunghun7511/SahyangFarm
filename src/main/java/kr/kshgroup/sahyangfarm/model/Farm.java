@@ -1,13 +1,13 @@
 package kr.kshgroup.sahyangfarm.model;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Farm {
+public class Farm implements SFStorableData {
     private final OfflinePlayer owner;
     private final List<UUID> users = new ArrayList<>();
 
@@ -15,9 +15,20 @@ public class Farm {
 
     private final Location center;
 
-    public Farm(OfflinePlayer owner, Location center) {
+    public Farm(OfflinePlayer owner, Location center, int maxUser) {
         this.owner = owner;
         this.center = center;
+        this.maxUser = maxUser;
+    }
+
+    public Farm(Map<String, Object> map) {
+        this.owner = Bukkit.getOfflinePlayer(UUID.fromString((String) map.get("owner")));
+        this.center = (Location) map.get("center");
+        this.maxUser = (int) map.get("max");
+
+        this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
+                .map(UUID::fromString)
+                .collect(Collectors.toList()));
     }
 
     public String getOwnerName() {
@@ -28,8 +39,16 @@ public class Farm {
         return this.owner;
     }
 
+    public UUID getOwner() {
+        return this.owner.getUniqueId();
+    }
+
     public List<UUID> getUsers() {
         return users;
+    }
+
+    public boolean isIn(OfflinePlayer player) {
+        return getOwner().equals(player.getUniqueId()) || this.users.contains(player.getUniqueId());
     }
 
     public void setMaxUser(int maxUser) {
@@ -46,5 +65,15 @@ public class Farm {
 
     public Location getCenter(boolean clone) {
         return clone ? center.clone() : center;
+    }
+
+    @Override
+    public Map<String, Object> serialize() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("owner", this.owner.getUniqueId().toString());
+        map.put("center", this.center);
+        map.put("max", this.maxUser);
+        map.put("users", this.users.stream().map(UUID::toString).collect(Collectors.toList()));
+        return map;
     }
 }
