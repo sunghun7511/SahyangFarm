@@ -1,16 +1,36 @@
 package kr.kshgroup.sahyangfarm.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ServerData implements SFStorableData {
-    public ServerData(Map<String, Object> map) {
+    private final List<FarmOffset> reusableOffset = new ArrayList<>();
+    private int lastOffset;
 
+    public ServerData(Map<String, Object> map) {
+        reusableOffset.addAll((List<FarmOffset>) map.getOrDefault("offset.reusable", new ArrayList<>()));
+        lastOffset = (int) map.getOrDefault("offset.last", 0);
     }
 
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
+        map.put("offset.reusable", reusableOffset);
+        map.put("offset.last", lastOffset);
         return map;
+    }
+
+    public List<FarmOffset> getReusableOffset() {
+        return reusableOffset;
+    }
+
+    public int getLastOffset() {
+        return lastOffset;
+    }
+
+    public void setLastOffset(int lastOffset) {
+        this.lastOffset = lastOffset;
     }
 }
