@@ -7,12 +7,15 @@ import kr.kshgroup.sahyangfarm.SahyangFarm;
 import kr.kshgroup.sahyangfarm.data.DataManager;
 import kr.kshgroup.sahyangfarm.model.Farm;
 import kr.kshgroup.sahyangfarm.model.FarmOffset;
+import kr.kshgroup.sahyangfarm.model.ServerData;
 import kr.kshgroup.sahyangfarm.story.SFStoryBase;
 import kr.kshgroup.sahyangfarm.story.StoryManager;
 import kr.kshgroup.sahyangfarm.util.WorldEditUtil;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -71,6 +74,28 @@ public class StoryFarm implements SFStoryBase {
         }
 
         player.teleport(farm.getCenter().clone());
+    }
+
+    public void removeFarm(Farm farm) {
+        ServerData serverData = dataManager.getServerData();
+        serverData.getFarms().remove(farm);
+
+        StoryFarmOffset storyFarmOffset = storyManager.getStory(StoryFarmOffset.class);
+        storyFarmOffset.freeOffset(farm.getFarmOffset());
+
+        Location c = farm.getCenter(false);
+        World w = c.getWorld();
+        int pad = Reference.FARM_PADDING;
+        for (int x = c.getBlockX() - pad; x <= c.getBlockX() + pad; x++) {
+            for (int y = 0; y <= 255; y++) {
+                for (int z = c.getBlockZ() - pad; z <= c.getBlockZ() + pad; z++) {
+                    Block b = new Location(w, x, y, z).getBlock();
+                    if (b.getType() != Material.AIR) {
+                        b.setType(Material.AIR);
+                    }
+                }
+            }
+        }
     }
 
     private Farm createFarm(World world, Player player) {
