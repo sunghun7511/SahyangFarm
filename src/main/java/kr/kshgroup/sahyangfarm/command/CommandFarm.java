@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class CommandFarm extends SFCommandGroup implements CommandExecutor {
@@ -42,6 +43,12 @@ public class CommandFarm extends SFCommandGroup implements CommandExecutor {
 
         if (isNotPlayer(sender)) return true;
         Player player = (Player) sender;
+
+        String worldName = player.getWorld().getName().toLowerCase(Locale.ENGLISH);
+        if (!player.isOp() && !Reference.COMMAND_AVAILABLE_WORLDS.contains(worldName)) {
+            player.sendMessage(Reference.PREFIX + "팜 명령어 사용이 불가능한 월드입니다.");
+            return true;
+        }
 
         StoryFarm storyFarm = storyManager.getStory(StoryFarm.class);
         storyFarm.teleportFarm(player);
