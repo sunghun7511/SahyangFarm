@@ -19,14 +19,14 @@ public class Farm implements SFStorableData {
     public Farm(OfflinePlayer owner, Location center, FarmOffset farmOffset, int maxUser) {
         this.owner = owner;
         this.farmOffset = farmOffset;
-        this.center = center;
+        this.center = center.clone();
         this.maxUser = maxUser;
     }
 
     public Farm(Map<String, Object> map) {
         this.owner = Bukkit.getOfflinePlayer(UUID.fromString((String) map.get("owner")));
         this.farmOffset = (FarmOffset) map.get("offset");
-        this.center = (Location) map.get("center");
+        this.center = ((Location) map.get("center")).clone();
         this.maxUser = (int) map.get("max");
 
         this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
