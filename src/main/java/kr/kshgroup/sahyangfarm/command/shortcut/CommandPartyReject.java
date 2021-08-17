@@ -22,7 +22,7 @@ public class CommandPartyReject extends SFCommandExecutor {
         Player player = (Player) sender;
 
         StoryInvite storyInvite = storyManager.getStory(StoryInvite.class);
-        storyInvite.replyInvite(player, true);
+        storyInvite.replyInvite(player, false);
         return true;
     }
 }
