@@ -42,7 +42,7 @@ public class CommandFarmHelp extends SFCommandExecutor {
 
     private enum Help {
         FARM("/팜", "나의 팜으로 이동합니다.", "단, 나의 팜이 없는 경우 새로 생성합니다."),
-        FARM_HELP("/팜 도움말", "명령어 도움말을 확인할 수 있습니다."),
+        FARM_HELP("/팜 도움말 <페이지>", "명령어 도움말을 확인할 수 있습니다."),
         FARM_REMOVE("/팜 제거", "내 팜을 제거합니다.", "단, 파티에 아무도 없어야 합니다."),
         FARM_PARTY("/팜 파티", "파티 시스템과 관련된 명령어를 확인합니다."),
         FARM_PARTY_DETAIL("/팜 파티 확인", "내 팜의 파티를 확인할 수 있습니다."),

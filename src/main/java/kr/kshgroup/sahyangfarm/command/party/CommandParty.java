@@ -26,8 +26,8 @@ public class CommandParty extends SFCommandGroup {
     @Override
     public boolean onCommandAfter(CommandSender sender, String label, String[] args, SFCommand executed, boolean result) {
         if (Objects.isNull(executed)) {
-            sender.sendMessage(Reference.PREFIX + "알 수 없는 명령어입니다.");
-            sender.sendMessage(Reference.PREFIX + "'/팜 도움말' 명령어를 통해 도움말을 확인하세요.");
+            sender.sendMessage(Reference.PREFIX + "팜 파티에 관련된 명령어입니다.");
+            sender.sendMessage(Reference.PREFIX + "'/팜 도움말 <페이지>' 명령어를 통해 도움말을 확인하세요.");
         }
         return true;
     }
