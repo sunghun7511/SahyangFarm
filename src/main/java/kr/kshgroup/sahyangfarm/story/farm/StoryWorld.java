@@ -19,7 +19,7 @@ public class StoryWorld implements SFStoryBase {
         WorldCreator wc = new WorldCreator(Reference.WORLD_NAME);
 
         wc.type(WorldType.FLAT);
-        wc.generatorSettings("2;0;1;");
+        wc.generatorSettings("3;minecraft:air;127;decoration;2;");
 
         return wc.createWorld();
     }
