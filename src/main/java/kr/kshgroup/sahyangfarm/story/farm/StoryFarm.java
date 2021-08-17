@@ -32,6 +32,7 @@ public class StoryFarm implements SFStoryBase {
 
     public Farm getFarmFromLocation(Location location) {
         return dataManager.getServerData().getFarms().stream()
+                .filter(Objects::nonNull)
                 .filter(farm -> {
                     Location center = farm.getCenter();
                     int x = location.getBlockX();
@@ -47,6 +48,7 @@ public class StoryFarm implements SFStoryBase {
 
     public Farm getFarm(OfflinePlayer player) {
         return dataManager.getServerData().getFarms().stream()
+                .filter(Objects::nonNull)
                 .filter(farm -> farm.isIn(player))
                 .findFirst()
                 .orElse(null);
