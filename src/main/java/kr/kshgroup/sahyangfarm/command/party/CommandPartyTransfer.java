@@ -17,7 +17,7 @@ public class CommandPartyTransfer extends SFCommandExecutor {
     private final StoryManager storyManager;
 
     public CommandPartyTransfer() {
-        super("이전", "transfer");
+        super("양도", "이전", "transfer");
 
         storyManager = (StoryManager) SahyangFarm.getManager(StoryManager.class);
     }
