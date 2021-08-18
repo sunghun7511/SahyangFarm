@@ -14,19 +14,19 @@ public class Farm implements SFStorableData {
     private int maxUser;
 
     private final FarmOffset farmOffset;
-    private final Location center;
+    private final WorldlessLocation center;
 
     public Farm(OfflinePlayer owner, Location center, FarmOffset farmOffset, int maxUser) {
         this.owner = owner;
         this.farmOffset = farmOffset;
-        this.center = center.clone();
+        this.center = new WorldlessLocation(center.clone());
         this.maxUser = maxUser;
     }
 
     public Farm(Map<String, Object> map) {
         this.owner = Bukkit.getOfflinePlayer(UUID.fromString((String) map.get("owner")));
         this.farmOffset = (FarmOffset) map.get("offset");
-        this.center = ((Location) map.get("center")).clone();
+        this.center = ((WorldlessLocation) map.get("center"));
         this.maxUser = (int) map.get("max");
 
         this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
@@ -71,11 +71,7 @@ public class Farm implements SFStorableData {
     }
 
     public Location getCenter() {
-        return getCenter(true);
-    }
-
-    public Location getCenter(boolean clone) {
-        return clone ? center.clone() : center;
+        return this.center.getLocation();
     }
 
     @Override
