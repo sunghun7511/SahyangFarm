@@ -7,6 +7,7 @@ import kr.kshgroup.sahyangfarm.story.StoryManager;
 import kr.kshgroup.sahyangfarm.story.farm.StoryFarm;
 import kr.kshgroup.sahyangfarm.story.farm.StoryWorld;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -28,9 +29,9 @@ public class FarmInteractionListener extends SFListener {
             return;
         }
 
-        Location target = event.getClickedBlock().getLocation();
-        if (Objects.isNull(target))
-            target = player.getLocation();
+        Location target = player.getLocation();
+        if (Objects.nonNull(event.getClickedBlock()) && event.getClickedBlock().getType() != Material.AIR)
+            target = event.getClickedBlock().getLocation();
 
         StoryWorld storyWorld = storyManager.getStory(StoryWorld.class);
         if (!storyWorld.getWorld().getUID().equals(target.getWorld().getUID())) {
