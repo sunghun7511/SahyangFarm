@@ -86,7 +86,7 @@ public class WorldlessLocation implements SFStorableData {
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
-        map.put("world", x);
+        map.put("world", worldName);
         map.put("x", x);
         map.put("y", y);
         map.put("z", z);
