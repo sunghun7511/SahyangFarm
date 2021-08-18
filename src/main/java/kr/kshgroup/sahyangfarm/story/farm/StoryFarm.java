@@ -85,7 +85,7 @@ public class StoryFarm implements SFStoryBase {
         StoryFarmOffset storyFarmOffset = storyManager.getStory(StoryFarmOffset.class);
         storyFarmOffset.freeOffset(farm.getFarmOffset());
 
-        Location c = farm.getCenter(false);
+        Location c = farm.getCenter();
         World w = c.getWorld();
         int pad = Reference.FARM_PADDING;
         for (int x = c.getBlockX() - pad; x <= c.getBlockX() + pad; x++) {
