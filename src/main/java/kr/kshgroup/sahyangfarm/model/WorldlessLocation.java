@@ -31,8 +31,8 @@ public class WorldlessLocation implements SFStorableData {
         x = (double) map.get("x");
         y = (double) map.get("y");
         z = (double) map.get("z");
-        pitch = (float) map.get("pitch");
-        yaw = (float) map.get("yaw");
+        pitch = (float) (double) map.get("pitch");
+        yaw = (float) (double) map.get("yaw");
     }
 
     public Location getLocation() {
