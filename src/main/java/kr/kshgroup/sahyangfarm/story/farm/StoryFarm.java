@@ -16,6 +16,7 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -98,6 +99,11 @@ public class StoryFarm implements SFStoryBase {
                 }
             }
         }
+
+        w.getNearbyEntities(c, pad, 255, pad).stream()
+                .filter(entity -> !(entity instanceof Player))
+                .filter(Entity::isValid)
+                .forEach(Entity::remove);
     }
 
     private Farm createFarm(World world, Player player) {
