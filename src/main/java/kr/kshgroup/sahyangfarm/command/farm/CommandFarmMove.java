@@ -1,4 +1,4 @@
-package kr.kshgroup.sahyangfarm.command.admin;
+package kr.kshgroup.sahyangfarm.command.farm;
 
 import kr.kshgroup.sahyangfarm.Reference;
 import kr.kshgroup.sahyangfarm.SahyangFarm;
@@ -13,10 +13,10 @@ import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
-public class CommandForceMove extends SFCommandExecutor {
+public class CommandFarmMove extends SFCommandExecutor {
     private final StoryManager storyManager;
-    public CommandForceMove() {
-        super("이동", "move");
+    public CommandFarmMove() {
+        super("이동", "놀러가기", "move");
 
         storyManager = (StoryManager) SahyangFarm.getManager(StoryManager.class);
     }
@@ -25,11 +25,6 @@ public class CommandForceMove extends SFCommandExecutor {
     public boolean onCommand(CommandSender sender, String label, String[] args) {
         if (isNotPlayer(sender)) return true;
         Player player = (Player) sender;
-
-        if (!player.isOp()) {
-            player.sendMessage(Reference.PREFIX + "이 명령어를 사용할 권한이 없습니다.");
-            return true;
-        }
 
         if (args.length == 0) {
             player.sendMessage(Reference.PREFIX + "이동할 유저의 닉네임을 입력해주세요.");
