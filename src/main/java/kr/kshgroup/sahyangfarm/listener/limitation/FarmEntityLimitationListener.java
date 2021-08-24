@@ -2,6 +2,7 @@ package kr.kshgroup.sahyangfarm.listener.limitation;
 
 import kr.kshgroup.sahyangfarm.Reference;
 import kr.kshgroup.sahyangfarm.SahyangFarm;
+import kr.kshgroup.sahyangfarm.data.DataManager;
 import kr.kshgroup.sahyangfarm.listener.SFListener;
 import kr.kshgroup.sahyangfarm.model.Farm;
 import kr.kshgroup.sahyangfarm.story.StoryManager;
@@ -18,9 +19,11 @@ import java.util.Objects;
 
 public class FarmEntityLimitationListener extends SFListener {
     private final StoryManager storyManager;
+    private final DataManager dataManager;
 
     public FarmEntityLimitationListener() {
         storyManager = (StoryManager) SahyangFarm.getManager(StoryManager.class);
+        dataManager = (DataManager) SahyangFarm.getManager(DataManager.class);
     }
 
     @EventHandler
@@ -46,7 +49,7 @@ public class FarmEntityLimitationListener extends SFListener {
         long count = world.getNearbyEntities(farm.getCenter(), maxDistance, 255, maxDistance).stream()
                 .filter(LivingEntity.class::isInstance)
                 .count();
-        if (count > Reference.MAX_ENTITY_IN_FARM) {
+        if (count > dataManager.getServerData().getMaxEntityInFarm()) {
             event.setCancelled(true);
         }
     }
