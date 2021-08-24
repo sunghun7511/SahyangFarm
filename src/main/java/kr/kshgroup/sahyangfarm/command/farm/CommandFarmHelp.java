@@ -54,7 +54,8 @@ public class CommandFarmHelp extends SFCommandExecutor {
         FARM_PARTY_LEAVE("/팜 파티 나가기", "소속된 파티에서 나갑니다.", "초대받은 경우만 사용이 가능합니다."),
         FARM_TRANSFER("/팜 파티 양도 <닉네임>", "내 팜의 소유권을 양도합니다."),
         FARM_OP_INCREASE("/팜 증설", true, "스크립트 연동용 명령어입니다.", "자신의 팜의 최대 파티 인원을 1명 증설합니다."),
-        FARM_OP_SET_MAX_USER("/팜 파티 인원설정 <닉네임> <최대 인원>", true, "특정 유저의 최대 인원을 설정합니다.");
+        FARM_OP_SET_MAX_USER("/팜 파티 인원설정 <닉네임> <최대 인원>", true, "특정 유저의 최대 인원을 설정합니다."),
+        FARM_OP_MAX_ENTITY("/팜 엔티티제한 (최대 엔티티 수)", true, "서버 전체의 엔티티 제한을 설정합니다.", "값을 입력하지 않으면 현재 값을 확인합니다.");
 
         private final boolean requiredOp;
         private final String usage;
