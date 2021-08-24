@@ -16,10 +16,13 @@ public class Farm implements SFStorableData {
     private final FarmOffset farmOffset;
     private final WorldlessLocation center;
 
+    private WorldlessLocation spawn;
+
     public Farm(OfflinePlayer owner, Location center, FarmOffset farmOffset, int maxUser) {
         this.owner = owner;
         this.farmOffset = farmOffset;
         this.center = new WorldlessLocation(center.clone());
+        this.spawn = new WorldlessLocation(center.clone());
         this.maxUser = maxUser;
     }
 
@@ -27,6 +30,7 @@ public class Farm implements SFStorableData {
         this.owner = Bukkit.getOfflinePlayer(UUID.fromString((String) map.get("owner")));
         this.farmOffset = (FarmOffset) map.get("offset");
         this.center = ((WorldlessLocation) map.get("center"));
+        this.spawn = ((WorldlessLocation) map.getOrDefault("spawn", center.clone()));
         this.maxUser = (int) map.get("max");
 
         this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
@@ -74,12 +78,21 @@ public class Farm implements SFStorableData {
         return this.center.getLocation();
     }
 
+    public Location getSpawn() {
+        return spawn.getLocation();
+    }
+
+    public void setSpawn(Location spawn) {
+        this.spawn = new WorldlessLocation(spawn);
+    }
+
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
         map.put("owner", this.owner.getUniqueId().toString());
         map.put("offset", this.farmOffset);
         map.put("center", this.center);
+        map.put("spawn", this.spawn);
         map.put("max", this.maxUser);
         map.put("users", this.users.stream().map(UUID::toString).collect(Collectors.toList()));
         return map;

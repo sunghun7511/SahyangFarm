@@ -76,7 +76,7 @@ public class StoryFarm implements SFStoryBase {
             }
         }
 
-        player.teleport(farm.getCenter().clone());
+        player.teleport(farm.getSpawn().clone());
     }
 
     public void removeFarm(Farm farm) {
