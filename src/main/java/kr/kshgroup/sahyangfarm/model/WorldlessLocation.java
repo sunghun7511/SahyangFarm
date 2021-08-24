@@ -7,7 +7,7 @@ import org.bukkit.World;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WorldlessLocation implements SFStorableData {
+public class WorldlessLocation implements SFStorableData, Cloneable {
     private final String worldName;
 
     private double x;
@@ -93,5 +93,14 @@ public class WorldlessLocation implements SFStorableData {
         map.put("yaw", yaw);
         map.put("pitch", pitch);
         return map;
+    }
+
+    @Override
+    protected WorldlessLocation clone() {
+        try {
+            return (WorldlessLocation) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
