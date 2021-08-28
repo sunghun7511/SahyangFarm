@@ -40,7 +40,7 @@ public class FarmInteractionListener extends SFListener {
 
         StoryFarm storyFarm = storyManager.getStory(StoryFarm.class);
         Farm farm = storyFarm.getFarmFromLocation(target);
-        if (Objects.nonNull(farm) && farm.isIn(player)) {
+        if (Objects.nonNull(farm) && (farm.isIn(player) || farm.getPartTimes().contains(player.getUniqueId()))) {
             return;
         }
 

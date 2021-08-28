@@ -49,7 +49,7 @@ public class CommandFarmMove extends SFCommandExecutor {
 
         if (!player.isOp()
                 && !farm.isAllowMove()
-                && !farm.getUsers().contains(player.getUniqueId())
+                && !farm.isIn(player)
                 && !farm.getPartTimes().contains(player.getUniqueId())) {
             player.sendMessage(Reference.PREFIX + "팜 주인이 이동을 원하지 않습니다.");
             return true;
