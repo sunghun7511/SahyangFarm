@@ -47,6 +47,8 @@ public class CommandPartyDetail extends SFCommandExecutor {
                 player.sendMessage(Reference.PREFIX + " - " + offlinePlayer.getName());
             }
         }
+        player.sendMessage(Reference.PREFIX + "상태 : " + (farm.isAllowMove() ? "열림" : "닫힘 (이동 불가)"));
+
         Location center = farm.getCenter();
         player.sendMessage(Reference.PREFIX + "위치 : X=" + center.getBlockX() + ", Y=" + center.getBlockY() + ", Z=" + center.getBlockZ());
         return true;
