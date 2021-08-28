@@ -11,12 +11,12 @@ public class Farm implements SFStorableData {
     private OfflinePlayer owner;
     private final List<UUID> users = new ArrayList<>();
 
-    private int maxUser;
-
     private final FarmOffset farmOffset;
     private final WorldlessLocation center;
 
     private WorldlessLocation spawn;
+    private int maxUser;
+    private boolean allowMove;
 
     public Farm(OfflinePlayer owner, Location center, FarmOffset farmOffset, int maxUser) {
         this.owner = owner;
@@ -24,6 +24,7 @@ public class Farm implements SFStorableData {
         this.center = new WorldlessLocation(center.clone());
         this.spawn = new WorldlessLocation(center.clone());
         this.maxUser = maxUser;
+        this.allowMove = true;
     }
 
     public Farm(Map<String, Object> map) {
@@ -32,6 +33,7 @@ public class Farm implements SFStorableData {
         this.center = ((WorldlessLocation) map.get("center"));
         this.spawn = ((WorldlessLocation) map.getOrDefault("spawn", center.clone()));
         this.maxUser = (int) map.get("max");
+        this.allowMove = (boolean) map.getOrDefault("allow-move", true);
 
         this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
                 .map(UUID::fromString)
@@ -86,6 +88,14 @@ public class Farm implements SFStorableData {
         this.spawn = new WorldlessLocation(spawn);
     }
 
+    public void setAllowMove(boolean allowMove) {
+        this.allowMove = allowMove;
+    }
+
+    public boolean isAllowMove() {
+        return allowMove;
+    }
+
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = new HashMap<>();
@@ -94,6 +104,7 @@ public class Farm implements SFStorableData {
         map.put("center", this.center);
         map.put("spawn", this.spawn);
         map.put("max", this.maxUser);
+        map.put("allow-move", this.allowMove);
         map.put("users", this.users.stream().map(UUID::toString).collect(Collectors.toList()));
         return map;
     }
