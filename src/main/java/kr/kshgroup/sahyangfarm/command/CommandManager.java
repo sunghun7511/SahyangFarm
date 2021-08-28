@@ -2,6 +2,7 @@ package kr.kshgroup.sahyangfarm.command;
 
 import kr.kshgroup.sahyangfarm.ManagerBase;
 import kr.kshgroup.sahyangfarm.command.admin.CommandMaxEntity;
+import kr.kshgroup.sahyangfarm.command.farm.CommandFarmAllowMove;
 import kr.kshgroup.sahyangfarm.command.farm.CommandFarmMove;
 import kr.kshgroup.sahyangfarm.command.admin.CommandMaxUserIncrease;
 import kr.kshgroup.sahyangfarm.command.farm.CommandFarmHelp;
@@ -24,6 +25,7 @@ public class CommandManager extends ManagerBase {
         mainCommand.registerCommand(new CommandMaxEntity());
         mainCommand.registerCommand(new CommandMaxUserIncrease());
 
+        mainCommand.registerCommand(new CommandFarmAllowMove());
         mainCommand.registerCommand(new CommandFarmHelp());
         mainCommand.registerCommand(new CommandFarmRemove());
         mainCommand.registerCommand(new CommandFarmMove());
