@@ -1,5 +1,5 @@
 main: kr.kshgroup.sahyangfarm.SahyangFarm
-version: 1.0.3
+version: 1.0.4
 name: SahyangFarm
 
 commands:
