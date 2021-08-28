@@ -7,6 +7,7 @@ import kr.kshgroup.sahyangfarm.command.farm.CommandFarmMove;
 import kr.kshgroup.sahyangfarm.command.admin.CommandMaxUserIncrease;
 import kr.kshgroup.sahyangfarm.command.farm.CommandFarmHelp;
 import kr.kshgroup.sahyangfarm.command.farm.CommandFarmRemove;
+import kr.kshgroup.sahyangfarm.command.parttime.CommandPartTime;
 import kr.kshgroup.sahyangfarm.command.party.CommandParty;
 import kr.kshgroup.sahyangfarm.command.shortcut.CommandPartyAccept;
 import kr.kshgroup.sahyangfarm.command.shortcut.CommandPartyReject;
@@ -29,7 +30,9 @@ public class CommandManager extends ManagerBase {
         mainCommand.registerCommand(new CommandFarmHelp());
         mainCommand.registerCommand(new CommandFarmRemove());
         mainCommand.registerCommand(new CommandFarmMove());
+
         mainCommand.registerCommand(new CommandParty());
+        mainCommand.registerCommand(new CommandPartTime());
 
         mainCommand.registerCommand(new CommandPartyAccept());
         mainCommand.registerCommand(new CommandPartyReject());
