@@ -47,7 +47,7 @@ public class CommandPartyDetail extends SFCommandExecutor {
             }
         }
 
-        List<UUID> parttimes = farm.getUsers();
+        List<UUID> parttimes = farm.getPartTimes();
         if (parttimes.size() != 0) {
             player.sendMessage(Reference.PREFIX + "고용된 알바 (" + parttimes.size() + "명):");
             for (UUID user : parttimes) {
