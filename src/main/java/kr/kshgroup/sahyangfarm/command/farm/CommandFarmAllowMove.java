@@ -39,7 +39,7 @@ public class CommandFarmAllowMove extends SFCommandExecutor {
 
         boolean isOpen = label.endsWith("열기") || label.endsWith("open");
         farm.setAllowMove(isOpen);
-        player.sendMessage(Reference.PREFIX + "이제부터 팜 이동을" + (isOpen ? "허용합니다." : "막습니다."));
+        player.sendMessage(Reference.PREFIX + "이제부터 팜 이동을 " + (isOpen ? "허용합니다." : "막습니다."));
         return false;
     }
 }
