@@ -46,6 +46,11 @@ public class CommandFarmMove extends SFCommandExecutor {
             return true;
         }
 
+        if (!farm.isAllowMove()) {
+            player.sendMessage(Reference.PREFIX + "팜 주인이 이동을 원하지 않습니다.");
+            return true;
+        }
+
         storyFarm.teleportFarm(player, offlinePlayer);
         return false;
     }
