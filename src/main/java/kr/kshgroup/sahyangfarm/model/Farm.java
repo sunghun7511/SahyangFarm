@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Farm implements SFStorableData {
     private OfflinePlayer owner;
     private final List<UUID> users = new ArrayList<>();
+    private final List<UUID> parttimes = new ArrayList<>();
 
     private final FarmOffset farmOffset;
     private final WorldlessLocation center;
@@ -38,6 +39,9 @@ public class Farm implements SFStorableData {
         this.users.addAll(((List<String>) map.getOrDefault("users", new ArrayList<>())).stream()
                 .map(UUID::fromString)
                 .collect(Collectors.toList()));
+        this.parttimes.addAll(((List<String>) map.getOrDefault("part-time", new ArrayList<>())).stream()
+                .map(UUID::fromString)
+                .collect(Collectors.toList()));
     }
 
     public String getOwnerName() {
@@ -58,6 +62,10 @@ public class Farm implements SFStorableData {
 
     public List<UUID> getUsers() {
         return users;
+    }
+
+    public List<UUID> getPartTimes() {
+        return parttimes;
     }
 
     public boolean isIn(OfflinePlayer player) {
@@ -106,6 +114,7 @@ public class Farm implements SFStorableData {
         map.put("max", this.maxUser);
         map.put("allow-move", this.allowMove);
         map.put("users", this.users.stream().map(UUID::toString).collect(Collectors.toList()));
+        map.put("part-time", this.parttimes.stream().map(UUID::toString).collect(Collectors.toList()));
         return map;
     }
 }
